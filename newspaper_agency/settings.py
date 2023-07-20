@@ -16,6 +16,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+
+    "newspaper",
 ]
 
 MIDDLEWARE = [
@@ -73,6 +75,7 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
+AUTH_USER_MODEL = "newspaper.Redactor"
 
 LANGUAGE_CODE = 'en-us'
 
