@@ -25,3 +25,6 @@ class NewspaperForm(forms.ModelForm):
     class Meta:
         model = Newspaper
         fields = "__all__"
+        widgets = {
+            "published_date": forms.DateInput(attrs={'type': 'date'}),
+        }
