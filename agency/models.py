@@ -30,7 +30,7 @@ class Newspaper(models.Model):
     content = models.TextField()
     published_date = models.DateField()
     topic = models.ForeignKey(Topic, on_delete=models.CASCADE)
-    publishers = models.ManyToManyField(settings.AUTH_USER_MODEL, related_name="newspapers")
+    publishers = models.ManyToManyField(settings.AUTH_USER_MODEL, related_name="newspaper")
 
     class Meta:
         ordering = ["title"]

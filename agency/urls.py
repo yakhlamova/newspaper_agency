@@ -9,6 +9,9 @@ from .views import (
     NewspaperDeleteView,
     RedactorListView,
     RedactorDetailView,
+    RedactorCreateView,
+    RedactorUpdateView,
+    RedactorDeleteView,
     TopicListView,
     TopicCreateView,
     TopicUpdateView,
@@ -19,24 +22,24 @@ urlpatterns = [
     path("", index, name="index"),
 
     path(
-        "manufacturers/",
-        ManufacturerListView.as_view(),
-        name="manufacturer-list",
+        "topics/",
+        TopicListView.as_view(),
+        name="topic-list",
     ),
     path(
-        "manufacturers/create/",
-        ManufacturerCreateView.as_view(),
-        name="manufacturer-create",
+        "topics/create/",
+        TopicCreateView.as_view(),
+        name="topic-create",
     ),
     path(
-        "manufacturers/<int:pk>/update/",
-        ManufacturerUpdateView.as_view(),
-        name="manufacturer-update",
+        "topics/<int:pk>/update/",
+        TopicUpdateView.as_view(),
+        name="topic-update",
     ),
     path(
-        "manufacturers/<int:pk>/delete/",
-        ManufacturerDeleteView.as_view(),
-        name="manufacturer-delete",
+        "topics/<int:pk>/delete/",
+        TopicDeleteView.as_view(),
+        name="topic-delete",
     ),
 
     path("newspapers/", NewspaperListView.as_view(), name="newspaper-list"),
@@ -61,6 +64,13 @@ urlpatterns = [
     path(
         "redactors/<int:pk>/", RedactorDetailView.as_view(), name="redactor-detail"
     ),
+    path("redactors/create/", RedactorCreateView.as_view(), name="redactor-create"),
+    path("redactors/<int:pk>/update/",
+         RedactorUpdateView.as_view(),
+         name="redactor-update"),
+    path("redactors/<int:pk>/delete/",
+         RedactorDeleteView.as_view(),
+         name="redactor-delete"),
 ]
 
-app_name = "newspaper"
+app_name = "agency"

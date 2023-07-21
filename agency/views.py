@@ -4,6 +4,7 @@ from django.urls import reverse_lazy
 from django.views import generic
 from django.contrib.auth.mixins import LoginRequiredMixin
 
+from .forms import NewspaperForm, RedactorCreationForm
 from .models import Redactor, Topic, Newspaper
 
 
@@ -30,7 +31,6 @@ def index(request):
 class TopicListView(LoginRequiredMixin, generic.ListView):
     model = Topic
     context_object_name = "topic_list"
-    template_name = "agency/topic_list.html"
     paginate_by = 5
 
 
@@ -38,19 +38,16 @@ class TopicCreateView(LoginRequiredMixin, generic.CreateView):
     model = Topic
     fields = "__all__"
     success_url = reverse_lazy("agency:topic-list")
-    template_name = "agency/topic_form.html"
 
 
 class TopicUpdateView(LoginRequiredMixin, generic.UpdateView):
     model = Topic
     fields = "__all__"
     success_url = reverse_lazy("agency:topic-list")
-    template_name = "agency/topic_form.html"
 
 
 class TopicDeleteView(LoginRequiredMixin, generic.DeleteView):
     model = Topic
-    template_name = "agency/topic_confirm_delete.html"
     success_url = reverse_lazy("agency:topic-list")
 
 
@@ -66,29 +63,43 @@ class NewspaperDetailView(LoginRequiredMixin, generic.DetailView):
 
 class NewspaperCreateView(LoginRequiredMixin, generic.CreateView):
     model = Newspaper
-    fields = "__all__"
-    success_url = reverse_lazy("newspaper:newspaper-list")
+    form_class = NewspaperForm
+    success_url = reverse_lazy("agency:newspaper-list")
 
 
 class NewspaperUpdateView(LoginRequiredMixin, generic.UpdateView):
     model = Newspaper
-    fields = "__all__"
-    success_url = reverse_lazy("newspaper:newspaper-list")
-    template_name = "taxi/car_form.html"
+    form_class = NewspaperForm
+    success_url = reverse_lazy("agency:newspaper-list")
 
 
-class CarDeleteView(LoginRequiredMixin, generic.DeleteView):
-    model = Car
-    template_name = "taxi/car_confirm_delete.html"
-    success_url = reverse_lazy("newspaper:newspaper-list")
+class NewspaperDeleteView(LoginRequiredMixin, generic.DeleteView):
+    model = Newspaper
+    success_url = reverse_lazy("agency:newspaper-list")
 
 
-class DriverListView(LoginRequiredMixin, generic.ListView):
-    model = Driver
+class RedactorListView(LoginRequiredMixin, generic.ListView):
+    model = Redactor
     paginate_by = 5
 
 
-class DriverDetailView(LoginRequiredMixin, generic.DetailView):
-    model = Driver
-    queryset = Driver.objects.all().prefetch_related("cars__manufacturer")
+class RedactorDetailView(LoginRequiredMixin, generic.DetailView):
+    model = Redactor
+    queryset = Redactor.objects.all().prefetch_related("newspapers__topic")
 
+
+class RedactorCreateView(LoginRequiredMixin, generic.CreateView):
+    model = Redactor
+    form_class = RedactorCreationForm
+    success_url = reverse_lazy("agency:redactor-list")
+
+
+class RedactorUpdateView(LoginRequiredMixin, generic.UpdateView):
+    model = Redactor
+    fields = "__all__"
+    success_url = reverse_lazy("agency:redactor-list")
+
+
+class RedactorDeleteView(LoginRequiredMixin, generic.DeleteView):
+    model = Redactor
+    success_url = reverse_lazy("agency:redactor-list")
