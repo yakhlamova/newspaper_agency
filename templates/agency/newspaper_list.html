@@ -1,10 +1,20 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>$Title$</title>
-</head>
-<body>
-$END$
-</body>
-</html>
+{% extends "base.html" %}
+
+{% block content %}
+  <h1>Newspaper list
+    <a href="{% url 'agency:newspaper-create' %}">+</a>
+  </h1>
+  {% if newspaper_list %}
+    <ul>
+      {% for newspaper in newspaper_list %}
+        <li>
+          <a href="{% url 'agency:newspaper-detail' pk=newspaper.id %} ">{{ newspaper.id }}</a>
+          {{ newspaper.title }} ({{ newspaper.topic.name }})
+        </li>
+      {% endfor %}
+    </ul>
+  {% else %}
+    <p>There are no newspapers in agency</p>
+  {% endif %}
+
+{% endblock %}

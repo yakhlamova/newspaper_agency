@@ -1,10 +1,19 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>$Title$</title>
-</head>
-<body>
-$END$
-</body>
-</html>
+{% extends "base.html" %}
+
+{% block content %}
+  <p>Topic: {{ newspaper.topic.name }}</p>
+  <h1>Redactors</h1>
+  <hr>
+  <ul>
+  {% for redactor in newspaper.publishers.all %}
+    <li>{{ redactor.username }} ({{ redactor.first_name }} {{ redactor.last_name }})</li>
+  {% endfor %}
+    <br>
+  <a class="btn btn-primary" href="{% url 'agency:newspaper-update' pk=newspaper.id %}">
+      Update
+  </a>
+  <a class="btn btn-danger" href="{% url 'agency:newspaper-delete' pk=newspaper.id %}">
+      Delete
+  </a>
+  </ul>
+{% endblock %}
