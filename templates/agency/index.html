@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <h1>Newspaper Home Page</h1>
+  <p>Welcome to Best Newspaper Ever!</p>
+  <h2>Dynamic content</h2>
+  <p>The Newspaper agency has the following record counts:</p>
+  <ul>
+    <li><strong>Newspaper:</strong> {{ num_newspapers}}</li>
+    <li><strong>Redactor:</strong> {{ num_redactors }}</li>
+    <li><strong>Topic:</strong> {{ num_topics }}</li>
+  </ul>
+
+  <p>You have visited this page
+    {{ num_visits }} time{{ num_visits|pluralize }}.
+  </p>
+
+{% endblock %}
