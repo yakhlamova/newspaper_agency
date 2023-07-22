@@ -15,6 +15,26 @@ class RedactorCreationForm(UserCreationForm):
             "last_name"
         )
 
+    def clean_years_of_experience(self):
+        years_of_experience = self.cleaned_data.get("years_of_experience")
+
+        if years_of_experience:
+            if years_of_experience < 0:
+                raise forms.ValidationError("Years of experience cannot be less than 0.")
+            elif years_of_experience > 60:
+                raise forms.ValidationError("Years of experience cannot be more than 60.")
+
+        return years_of_experience
+
+
+class RedactorSearchForm(forms.Form):
+    username = forms.CharField(
+        max_length=255,
+        required=False,
+        label="",
+        widget=forms.TextInput(attrs={"placeholder": "Search by username"})
+    )
+
 
 class NewspaperForm(forms.ModelForm):
     publishers = forms.ModelMultipleChoiceField(
@@ -27,7 +47,7 @@ class NewspaperForm(forms.ModelForm):
         model = Newspaper
         fields = "__all__"
         widgets = {
-            "published_date": forms.DateInput(attrs={'type': 'date'}),
+            "published_date": forms.DateInput(attrs={"type": "date"}),
         }
 
     def clean_published_date(self):
@@ -37,3 +57,29 @@ class NewspaperForm(forms.ModelForm):
             raise forms.ValidationError("Published date cannot be in the future.")
 
         return published_date
+
+    def clean_publishers(self):
+        publishers = self.cleaned_data.get("publishers")
+
+        if not publishers or len(publishers) > 3:
+            raise forms.ValidationError("Please choose from 1 to 3 publishers.")
+
+        return publishers
+
+
+class NewspaperSearchForm(forms.Form):
+    title = forms.CharField(
+        max_length=255,
+        required=False,
+        label="",
+        widget=forms.TextInput(attrs={"placeholder": "Search by title"})
+    )
+
+
+class TopicSearchForm(forms.Form):
+    name = forms.CharField(
+        max_length=255,
+        required=False,
+        label="",
+        widget=forms.TextInput(attrs={"placeholder": "Search by name"})
+    )
