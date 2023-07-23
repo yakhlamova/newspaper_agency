@@ -1,15 +1,42 @@
-<ul class="sidebar-nav list-group">
-  {% if user.is_authenticated %}
-    <li class="list-group-item">User: <a href="{{ user.get_absolute_url }}">{{ user.get_username }}</a></li>
-    <li class="list-group-item"><a href="{% url 'logout'%}?next={{request.path}}">Logout</a></li>
-  {% else %}
-    <li class="list-group-item"><a href="{% url 'login'%}?next={{request.path}}">Login</a></li>
-  {% endif %}
+<nav class="pcoded-navbar">
+  <div class="navbar-wrapper">
+    <div class="navbar-brand header-logo">
+      <a href="{% url 'agency:index' %}" class="b-brand">
+        <div class="b-bg">
+          <i class="feather icon-trending-up"></i>
+        </div>
+        <span class="b-title">Datta Able</span>
+      </a>
+      <a class="mobile-menu" id="mobile-collapse" href="javascript:"><span></span></a>
+    </div>
+    <div class="navbar-content scroll-div">
+      <ul class="nav pcoded-inner-navbar">
+        <li class="nav-item pcoded-menu-caption">
+          <label>Navigation</label>
+        </li>
 
-  <br>
+        <li class="nav-item {% if 'index' in segment %}active{% endif %}">
+          <a href="{% url 'agency:index' %}" class="nav-link ">
+            <span class="pcoded-micon"><i class="feather icon-home"></i></span><span class="pcoded-mtext">Home</span>
+          </a>
+        </li>
 
-  <li class="list-group-item"><a href="{% url 'agency:index' %}">Home</a></li>
-  <li class="list-group-item"><a href="{% url 'agency:redactor-list' %}">All redactors</a></li>
-  <li class="list-group-item"><a href="{% url 'agency:newspaper-list' %}">All newspapers</a></li>
-  <li class="list-group-item"><a href="{% url 'agency:topic-list' %}">All topics</a></li>
-</ul>
+        <li class="nav-item {% if 'form_elements' in segment %}active{% endif %}">
+          <a href="{% url 'agency:newspaper-list' %}" class="nav-link "><span class="pcoded-micon"><i
+                class="feather icon-file-text"></i></span><span class="pcoded-mtext">Newspaper</span></a>
+        </li>
+
+        <li class="nav-item {% if 'basic_tables' in segment %}active{% endif %}">
+          <a href="{% url 'agency:topic-list' %}" class="nav-link "><span class="pcoded-micon"><i
+                class="feather icon-server"></i></span><span class="pcoded-mtext">Topics</span></a>
+        </li>
+
+        <li class="nav-item {% if 'basic_tables' in segment %}active{% endif %}">
+          <a href="{% url 'agency:redactor-list' %}" class="nav-link "><span class="pcoded-micon"><i
+                class="feather icon-users"></i></span><span class="pcoded-mtext">Redactors</span></a>
+        </li>
+
+      </ul>
+    </div>
+  </div>
+</nav>

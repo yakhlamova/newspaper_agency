@@ -1,5 +1,7 @@
 {% load query_transform %}
+
 {% if is_paginated %}
+  <div class="col-xl-12">
   <ul class="pagination">
     {% if page_obj.has_previous %}
       <li class="page-item">
@@ -15,4 +17,5 @@
       </li>
     {% endif %}
   </ul>
+  </div>
 {% endif %}

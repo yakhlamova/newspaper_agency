@@ -1,32 +1,58 @@
 {% extends "base.html" %}
 
 {% block content %}
-  <h1>
-    Username: {{ redactor.username }}
-  </h1>
+  <div class="col-xl-12 col-md-6">
+      <div class="card card-event">
+        <div class="card-block">
+          <div class="row align-items-center justify-content-center">
+            <div class="col">
+              <h5 class="m-0">Username: {{ redactor.username }}</h5>
+            </div>
+          </div>
+          <h6 class="text-muted mt-4 mb-0">
+            <p><strong>First name:</strong> {{ redactor.first_name }}</p>
+            <p><strong>Last name:</strong> {{ redactor.last_name }}</p>
+            <p><strong>Years of experience:</strong> {{ redactor.years_of_experience }}</p>
+            <p><strong>Email:</strong> {{ redactor.email }}</p>
+          </h6>
+          <i class="fab fa-angellist text-c-green f-50"></i>
+          <a href="{% url 'agency:redactor-update' pk=redactor.id %}" class="btn btn-outline-success">
+            Update
+          </a>
+          <a href="{% url 'agency:redactor-delete' pk=redactor.id %}" class="btn btn-outline-danger">
+            Delete
+          </a>
 
-  <p><strong>First name:</strong> {{ redactor.first_name }}</p>
-  <p><strong>Last name:</strong> {{ redactor.last_name }}</p>
-  <p><strong>Years of experience:</strong> {{ redactor.years_of_experience }}</p>
-  <p><strong>Email:</strong> {{ redactor.email }}</p>
+        </div>
+      </div>
 
-  <div class="ml-3">
-    <h4>Newspapers</h4>
-
+    <h3 class="f-w-300">Newspapers</h3>
     {% for newspaper in redactor.newspapers.all %}
-        <hr>
-        <p><strong>Title:</strong> {{ newspaper.title }}</p>
-        <p><strong>Topic:</strong> {{ newspaper.topic.name }}</p>
-        <p class="text-muted"><strong>Id:</strong> {{newspaper.id}}</p>
+
+      <div class="card">
+        <div class="card-block border-bottom">
+          <div class="row d-flex align-items-center">
+            <div class="col-auto">
+              <i class="feather icon-zap f-30 text-c-green"></i>
+            </div>
+            <div class="col">
+              <h3 class="f-w-100">Title</h3>
+              <span class="d-block text-uppercase">{{ newspaper.title }}</span>
+              <h3 class="f-w-100">Topic</h3>
+              <span class="d-block text-uppercase">{{ newspaper.topic.name }}</span>
+              <h3 class="f-w-100 text-muted">Id:</h3>
+              <span class="d-block text-uppercase">{{ newspaper.id }}</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
 
     {% empty %}
       <p>No newspaper!</p>
     {% endfor %}
-    <a href="{% url 'agency:redactor-update' pk=redactor.id %}" class="btn btn-primary">
-      Update
-    </a>
-    <a href="{% url 'agency:redactor-delete' pk=redactor.id %}" class="btn btn-danger">
-      Delete
-    </a>
+
   </div>
+
 {% endblock %}

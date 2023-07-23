@@ -76,7 +76,7 @@ class NewspaperListView(LoginRequiredMixin, generic.ListView):
 
     def get_context_data(self, *, object_list=None, **kwargs):
         context = super(NewspaperListView, self).get_context_data(**kwargs)
-        title = self.request.GET.get("model", "")
+        title = self.request.GET.get("title", "")
         context["search_form"] = NewspaperSearchForm(initial={
             "title": title
         })
@@ -84,11 +84,11 @@ class NewspaperListView(LoginRequiredMixin, generic.ListView):
         return context
 
     def get_queryset(self):
-        queryset = Newspaper.objects.select_related("topic")
+        queryset = Newspaper.objects.all()
         title = self.request.GET.get("title")
 
         if title:
-            return queryset.filter(model__icontains=title)
+            return queryset.filter(title__icontains=title)
 
         return queryset
 
