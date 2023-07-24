@@ -34,7 +34,7 @@ class ModelsTest(TestCase):
         newspaper = Newspaper.objects.create(
             title="test_model",
             topic=topic,
-            published_date=timezone.now()  # Set the published_date to the current date and time
+            published_date=timezone.now()
         )
 
         self.assertEqual(str(newspaper), newspaper.title)
