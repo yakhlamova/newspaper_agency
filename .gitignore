@@ -348,7 +348,7 @@ poetry.toml
 # ruff
 .ruff_cache/
 
-# LSP config files
+# LSP newspaper_agency files
 pyrightconfig.json
 
 # End of https://www.toptal.com/developers/gitignore/api/python,django,pycharm+all
