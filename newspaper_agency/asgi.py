@@ -1,5 +1,5 @@
 """
-ASGI config for newspaper_agency project.
+ASGI newspaper_agency for newspaper_agency project.
 
 It exposes the ASGI callable as a module-level variable named ``application``.
 

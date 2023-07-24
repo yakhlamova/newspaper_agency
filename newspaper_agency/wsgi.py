@@ -1,5 +1,5 @@
 """
-WSGI config for newspaper_agency project.
+WSGI newspaper_agency for newspaper_agency project.
 
 It exposes the WSGI callable as a module-level variable named ``application``.
 

@@ -17,7 +17,6 @@ class ViewTests(TestCase):
         url = reverse("agency:index")
         response = self.client.get(url)
 
-        # Check if the response status code is 200 (OK)
         self.assertEqual(response.status_code, 200)
 
         self.assertTemplateUsed(response, "agency/index.html")
@@ -31,7 +30,7 @@ class ViewTests(TestCase):
         self.assertEqual(self.client.session.get("num_visits"), 2)
 
     def test_topic_list_view(self):
-        # Create some test topics
+
         Topic.objects.create(name="Topic 1")
         Topic.objects.create(name="Topic 2")
 
@@ -41,7 +40,6 @@ class ViewTests(TestCase):
         self.assertEqual(response.status_code, 200)
 
         self.assertTemplateUsed(response, "agency/topic_list.html")
-
         self.assertContains(response, "Topic 1")
         self.assertContains(response, "Topic 2")
 
