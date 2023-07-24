@@ -20,14 +20,12 @@ class ViewTests(TestCase):
         # Check if the response status code is 200 (OK)
         self.assertEqual(response.status_code, 200)
 
-        # Assert that the correct template is used for rendering
         self.assertTemplateUsed(response, "agency/index.html")
 
         self.assertEqual(response.context["num_redactors"], Redactor.objects.count())
         self.assertEqual(response.context["num_newspapers"], Newspaper.objects.count())
         self.assertEqual(response.context["num_topics"], Topic.objects.count())
 
-        # Assert that the session variable is set and incremented correctly
         self.assertEqual(self.client.session.get("num_visits"), 1)
         response = self.client.get(url)
         self.assertEqual(self.client.session.get("num_visits"), 2)
@@ -40,26 +38,20 @@ class ViewTests(TestCase):
         url = reverse("agency:topic-list")
         response = self.client.get(url)
 
-        # Check if the response status code is 200 (OK)
         self.assertEqual(response.status_code, 200)
 
-        # Assert that the correct template is used for rendering
         self.assertTemplateUsed(response, "agency/topic_list.html")
 
-        # Assert that the topics are listed in the response content
         self.assertContains(response, "Topic 1")
         self.assertContains(response, "Topic 2")
 
-    # You can write similar tests for other views as well
 
     def test_redactor_create_view(self):
         url = reverse("agency:redactor-create")
         response = self.client.get(url)
 
-        # Check if the response status code is 200 (OK)
         self.assertEqual(response.status_code, 200)
 
-        # Assert that the correct template is used for rendering
         self.assertTemplateUsed(response, "agency/redactor_form.html")
 
     def test_redactor_create_submit(self):
@@ -70,18 +62,14 @@ class ViewTests(TestCase):
             "password1": "new_password",
             "password2": "new_password",
             "years_of_experience": 5,
-            # Add other required fields as needed for your form
         }
         response = self.client.post(url, data)
 
-        # Check if the response status code is 302 (Redirect)
         self.assertEqual(response.status_code, 302)
 
-        # Assert that the Redactor is created in the database
         redactor = Redactor.objects.get(username="new_redactor")
         self.assertEqual(redactor.years_of_experience, 5)
 
-    # You can write similar tests for other view actions like update and delete
 
     def test_redactor_detail_view(self):
         redactor = Redactor.objects.create_user(
