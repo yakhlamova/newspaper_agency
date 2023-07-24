@@ -1,10 +1,12 @@
+import os
+import dj_database_url
 from pathlib import Path
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-SECRET_KEY = 'django-insecure-h81p93_2yic_$6)$82ihk^#@q+k29597tjx6p8ioq43o_)*t)l'
+SECRET_KEY = os.environ.get("DJANGO_SECRET_KEY", "django-insecure-h81p93_2yic_$6)$82ihk^#@q+k29597tjx6p8ioq43o_)*t)l")
 
-DEBUG = True
+DEBUG = os.environ.get("DJANDO_DEBUG", "") != "False"
 
 ALLOWED_HOSTS = []
 
@@ -26,6 +28,7 @@ INSTALLED_APPS = [
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
+    "whitenoise.middleware.WhiteNoiseMiddleware",
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -66,6 +69,10 @@ DATABASES = {
     }
 }
 
+db_from_env = dj_database_url.config(conn_max_age=500)
+DATABASES["default"].update(db_from_env)
+
+
 
 AUTH_PASSWORD_VALIDATORS = [
     {
@@ -98,5 +105,6 @@ STATIC_URL = 'static/'
 STATICFILES_DIRS = [
     BASE_DIR / "static",
 ]
+STATIC_ROOT = "staticfiles/"
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
