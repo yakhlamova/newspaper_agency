@@ -43,7 +43,6 @@ class ViewTests(TestCase):
         self.assertContains(response, "Topic 1")
         self.assertContains(response, "Topic 2")
 
-
     def test_redactor_create_view(self):
         url = reverse("agency:redactor-create")
         response = self.client.get(url)
