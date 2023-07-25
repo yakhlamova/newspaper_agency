@@ -3,7 +3,7 @@
 
 {% block content %}
 
-  {% if topic_list %}
+
       <div class="col-xl-12">
        <form action="" method="get" class="form-inline">
         {{ search_form|crispy }}
@@ -15,6 +15,7 @@
               <div class="btn btn-outline-primary float-right"><a href="{% url 'agency:topic-create' %}">Create</a></div>
           </div>
           <div class="card-block table-border-style">
+          {% if topic_list %}
             <div class="table-responsive">
               <table class="table table-hover">
                 <thead>
@@ -53,7 +54,7 @@
         </div>
       </div>
   {% else %}
-    <p>There are no topics in newspaper</p>
+    <h5 >There are no topics in newspaper</h5>
   {% endif %}
 
 {% endblock %}
