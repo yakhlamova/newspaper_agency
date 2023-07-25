@@ -3,7 +3,6 @@
 
 {% block content %}
 
-  {% if redactor_list %}
       <div class="col-xl-12">
        <form action="" method="get" class="form-inline">
         {{ search_form|crispy }}
@@ -15,6 +14,7 @@
               <div class="btn btn-outline-primary float-right"><a href="{% url 'agency:redactor-create' %}">Create</a></div>
           </div>
           <div class="card-block table-border-style">
+          {% if redactor_list %}
             <div class="table-responsive">
               <table class="table table-hover">
                 <thead>
@@ -44,7 +44,7 @@
       </div>
 
   {% else %}
-    <p>There are no redactors in the agency</p>
+    <h5>There are no redactors in the agency</h5>
   {% endif %}
 
 {% endblock %}

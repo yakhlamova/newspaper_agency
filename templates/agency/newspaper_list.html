@@ -3,9 +3,6 @@
 
 {% block content %}
 
-
-<!-- [ Hover-table ] start -->
-    {% if newspaper_list %}
       <div class="col-xl-12">
 
       <form action="" method="get" class="form-inline">
@@ -18,6 +15,7 @@
               <div class="btn btn-outline-primary float-right"><a href="{% url 'agency:newspaper-create' %}">Create</a></div>
           </div>
           <div class="card-block table-border-style">
+            {% if newspaper_list %}
             <div class="table-responsive">
               <table class="table table-hover">
                 <thead>
@@ -42,7 +40,7 @@
         </div>
       </div>
   {% else %}
-    <p>There are no newspapers in agency</p>
+    <h5>There are no newspapers in agency</h5>
   {% endif %}
       <!-- [ Hover-table ] end -->
 {% endblock %}

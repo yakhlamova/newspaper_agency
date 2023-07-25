@@ -8,7 +8,7 @@ SECRET_KEY = os.environ["DJANGO_SECRET_KEY"]
 
 DEBUG = os.environ.get("DJANDO_DEBUG", "") != "False"
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["127.0.0.1", "newspaper-agency-6lg8.onrender.com"]
 
 
 INSTALLED_APPS = [

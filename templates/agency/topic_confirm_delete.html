@@ -1,17 +1,23 @@
 {% extends "base.html" %}
 
 {% block content %}
+<div class="card">
+  <div class="card-header">
+    <h5>Delete Topic</h5>
+  </div>
+  <div class="card-block table-border-style">
 
-  <h1>Delete Topic</h1>
-  <p>Are you sure you want to delete the topic: {{ topic }}?</p>
+  <h5>Are you sure you want to delete the topic: {{ topic }}?</h5>
 
   <form action="" method="POST">
   {% csrf_token %}
-    <input type="submit" value="Yes, delete" class="btn btn-danger">
+    <input type="submit" value="Yes, delete" class="btn btn-outline-danger">
 
-    <a class="btn btn-primary" href="{% url 'agency:topic-list' %}">
+    <a class="btn btn-outline-primary" href="{% url 'agency:topic-list' %}">
       Cancel
     </a>
   </form>
+  </div>
+</div>
 
 {% endblock %}
