@@ -2,13 +2,17 @@
 
 System for tracking Redactors, assigned to Newspapers.
 
+## Check it out!
+[Newspaper Agency project deployed to Render](https://newspaper-agency-6lg8.onrender.com)
+
 ## Table of Contents
 1. [ Introduction. ](#introduction)
 2. [ Features. ](#features)
 3. [ Technologies Used. ](#technologies-used)
 4. [ Getting Started. ](#getting-started)
-5. [ Usage. ](#usage)
-6. [ Contributing. ](#contributing)
+5. [ Shutdown ](#shutdown)
+6. [ Usage. ](#usage)
+7. [ Contributing. ](#contributing)
 
 ## Introduction
 
@@ -73,6 +77,11 @@ python manage.py runserver
 
 7. Open your web browser and navigate to http://127.0.0.1:8000/.
 
+## Shutdown
+To stop running app in your terminal press:
+```
+ctrl + C
+```
 
 ## Usage
 * Administrators can log in to their accounts and manage redactor assignments for each newspaper.
