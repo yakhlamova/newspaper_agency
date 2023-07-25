@@ -142,7 +142,7 @@ Remember to replace `localhost` with the relevant IP address if you're not acces
 
 ## Demo
 
-![img.png](images_for_readme/img.png)
+![img.png](images_for_readme/home.png)
 ![img.png](images_for_readme/newsp.png)
 ![img_1.png](images_for_readme/img_1.png)
 ![img_2.png](images_for_readme/img_2.png)
