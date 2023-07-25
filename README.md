@@ -12,7 +12,9 @@ System for tracking Redactors, assigned to Newspapers.
 4. [ Getting Started. ](#getting-started)
 5. [ Shutdown ](#shutdown)
 6. [ Usage. ](#usage)
-7. [ Contributing. ](#contributing)
+7. [ Accessing the Application. ](#accessing-the-application)
+8. [ Demo. ](#demo)
+8. [ Contributing. ](#contributing)
 
 ## Introduction
 
@@ -51,31 +53,34 @@ python -m venv env
 source env/bin/activate      
 # For Windows: env\Scripts\activate
 ```
+3.  Edit the `.env` using the template `.env.sample`.
 
-3. Install dependencies:
+```
+# True for development, False for production
+DJANDO_DEBUG=True
+```
+
+4. Install dependencies:
 ```
 pip install -r requirements.txt
 ```
 
-4. Run database migrations:
-```
-python manage.py makemigrations
-```
+5. Run database migrations:
 ```
 python manage.py migrate
 ```
 
-5. Create a superuser to access the admin panel:
+6. Create a superuser to access the admin panel:
 ```
 python manage.py createsuperuser
 ```
 
-6. Start the development server:
+7. Start the development server:
 ```
 python manage.py runserver
 ```
 
-7. Open your web browser and navigate to http://127.0.0.1:8000/.
+8. Open your web browser and navigate to http://localhost:8000/.
 
 ## Shutdown
 To stop running app in your terminal press:
@@ -123,8 +128,26 @@ newspaper_agency/
 └── README.md               # Project documentation and information
 ```
 
+## Accessing the Application
+* The Django application is accessible at http://localhost:8000/
+* The Admin page can be accessed at http://localhost:8000/admin
+
+* If you wish to explore the application on a deployed server, access it at: https://newspaper-agency-6lg8.onrender.com and use following credentials:
+```
+login: best_user
+password: !userchik1
+```
+
+Remember to replace `localhost` with the relevant IP address if you're not accessing these from the same machine where the services are running.
+
+## Demo
+
+![img.png](images_for_readme/img.png)
+![img.png](images_for_readme/newsp.png)
+![img_1.png](images_for_readme/img_1.png)
+![img_2.png](images_for_readme/img_2.png)
+![img_3.png](images_for_readme/img_3.png)
+![img_4.png](images_for_readme/img_4.png)
 
 ## Contributing
 I welcome contributions to improve the Newspaper Redactor Tracking System. Feel free to submit bug reports, feature requests, or pull requests.
-
-
