@@ -1,7 +1,7 @@
 from django.contrib.auth import get_user_model
 from django.test import TestCase
 from django.utils import timezone
-from agency.forms import RedactorCreationForm, NewspaperForm
+from agency.forms import RedactorForm, NewspaperForm
 
 
 class RedactorCreationFormTest(TestCase):
@@ -12,9 +12,9 @@ class RedactorCreationFormTest(TestCase):
             "password2": "testpassword123",
             "years_of_experience": 10,
             "first_name": "John",
-            "last_name": "Doe"
+            "last_name": "Doe",
         }
-        form = RedactorCreationForm(data=form_data)
+        form = RedactorForm(data=form_data)
         self.assertTrue(form.is_valid())
 
     def test_clean_years_of_experience_negative(self):
@@ -24,9 +24,9 @@ class RedactorCreationFormTest(TestCase):
             "password2": "testpassword123",
             "years_of_experience": -5,
             "first_name": "John",
-            "last_name": "Doe"
+            "last_name": "Doe",
         }
-        form = RedactorCreationForm(data=form_data)
+        form = RedactorForm(data=form_data)
         self.assertFalse(form.is_valid())
         self.assertIn("years_of_experience", form.errors)
 
@@ -37,9 +37,9 @@ class RedactorCreationFormTest(TestCase):
             "password2": "testpassword123",
             "years_of_experience": 70,
             "first_name": "John",
-            "last_name": "Doe"
+            "last_name": "Doe",
         }
-        form = RedactorCreationForm(data=form_data)
+        form = RedactorForm(data=form_data)
         self.assertFalse(form.is_valid())
         self.assertIn("years_of_experience", form.errors)
 

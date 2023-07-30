@@ -4,7 +4,13 @@ from django.urls import reverse_lazy
 from django.views import generic, View
 from django.contrib.auth.mixins import LoginRequiredMixin
 
-from .forms import NewspaperForm, RedactorCreationForm, TopicSearchForm, NewspaperSearchForm, RedactorSearchForm
+from .forms import (
+    NewspaperForm,
+    RedactorForm,
+    TopicSearchForm,
+    NewspaperSearchForm,
+    RedactorSearchForm,
+)
 from .models import Redactor, Topic, Newspaper
 
 
@@ -27,9 +33,7 @@ class TopicListView(LoginRequiredMixin, generic.ListView):
     def get_context_data(self, *, object_list=None, **kwargs):
         context = super(TopicListView, self).get_context_data(**kwargs)
         name = self.request.GET.get("name", "")
-        context["search_form"] = TopicSearchForm(initial={
-            "name": name
-        })
+        context["search_form"] = TopicSearchForm(initial={"name": name})
 
         return context
 
@@ -67,9 +71,7 @@ class NewspaperListView(LoginRequiredMixin, generic.ListView):
     def get_context_data(self, *, object_list=None, **kwargs):
         context = super(NewspaperListView, self).get_context_data(**kwargs)
         title = self.request.GET.get("title", "")
-        context["search_form"] = NewspaperSearchForm(initial={
-            "title": title
-        })
+        context["search_form"] = NewspaperSearchForm(initial={"title": title})
 
         return context
 
@@ -111,9 +113,7 @@ class RedactorListView(LoginRequiredMixin, generic.ListView):
     def get_context_data(self, *, object_list=None, **kwargs):
         context = super(RedactorListView, self).get_context_data(**kwargs)
         username = self.request.GET.get("username", "")
-        context["search_form"] = RedactorSearchForm(initial={
-            "username": username
-        })
+        context["search_form"] = RedactorSearchForm(initial={"username": username})
 
         return context
 
@@ -134,13 +134,13 @@ class RedactorDetailView(LoginRequiredMixin, generic.DetailView):
 
 class RedactorCreateView(LoginRequiredMixin, generic.CreateView):
     model = Redactor
-    form_class = RedactorCreationForm
+    form_class = RedactorForm
     success_url = reverse_lazy("agency:redactor-list")
 
 
 class RedactorUpdateView(LoginRequiredMixin, generic.UpdateView):
     model = Redactor
-    fields = "__all__"
+    form_class = RedactorForm
     success_url = reverse_lazy("agency:redactor-list")
 
 

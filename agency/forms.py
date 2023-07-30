@@ -6,13 +6,13 @@ from django.utils import timezone
 from agency.models import Redactor, Newspaper
 
 
-class RedactorCreationForm(UserCreationForm):
+class RedactorForm(UserCreationForm):
     class Meta(UserCreationForm.Meta):
         model = Redactor
         fields = UserCreationForm.Meta.fields + (
             "years_of_experience",
             "first_name",
-            "last_name"
+            "last_name",
         )
 
     def clean_years_of_experience(self):
@@ -20,9 +20,13 @@ class RedactorCreationForm(UserCreationForm):
 
         if years_of_experience:
             if years_of_experience < 0:
-                raise forms.ValidationError("Years of experience cannot be less than 0.")
+                raise forms.ValidationError(
+                    "Years of experience cannot be less than 0."
+                )
             elif years_of_experience > 60:
-                raise forms.ValidationError("Years of experience cannot be more than 60.")
+                raise forms.ValidationError(
+                    "Years of experience cannot be more than 60."
+                )
 
         return years_of_experience
 
@@ -32,7 +36,7 @@ class RedactorSearchForm(forms.Form):
         max_length=255,
         required=False,
         label="",
-        widget=forms.TextInput(attrs={"placeholder": "Search by username"})
+        widget=forms.TextInput(attrs={"placeholder": "Search by username"}),
     )
 
 
@@ -40,7 +44,7 @@ class NewspaperForm(forms.ModelForm):
     publishers = forms.ModelMultipleChoiceField(
         queryset=get_user_model().objects.all(),
         widget=forms.CheckboxSelectMultiple,
-        required=True
+        required=True,
     )
 
     class Meta:
@@ -72,7 +76,7 @@ class NewspaperSearchForm(forms.Form):
         max_length=255,
         required=False,
         label="",
-        widget=forms.TextInput(attrs={"placeholder": "Search by title"})
+        widget=forms.TextInput(attrs={"placeholder": "Search by title"}),
     )
 
 
@@ -81,5 +85,5 @@ class TopicSearchForm(forms.Form):
         max_length=255,
         required=False,
         label="",
-        widget=forms.TextInput(attrs={"placeholder": "Search by name"})
+        widget=forms.TextInput(attrs={"placeholder": "Search by name"}),
     )

@@ -92,41 +92,9 @@ ctrl + C
 * Administrators can log in to their accounts and manage redactor assignments for each newspaper.
 * The system will maintain records of redactors and their published newspapers, providing easy access to their profiles and history.
 
-## Codebase Structure
-The project is coded using a simple and intuitive structure presented below:
-```
-newspaper_agency/
-│
-├── agency/                 # Django app for the main functionality
-│   ├── migrations/         # Database migration files
-│   ├── templatetags/       # Store custom template tags
-│   ├── __init__.py
-│   ├── admin.py            # Django admin configurations
-│   ├── forms.py            # Django forms for data validation
-│   ├── models.py           # Django models for database representation
-│   ├── tests/              # Unit tests for the app
-│   ├── urls.py             # App-level URL configurations
-│   └── views.py            # Django views and view functions
-│
-├── newspaper_agency/       # Django project configuration
-│   ├── __init__.py
-│   ├── asgi.py             # Handle asynchronous web requests
-│   ├── settings.py         # Django settings and configurations
-│   ├── urls.py             # Project-level URL configurations
-│   └── wsgi.py             # WSGI application entry point
-│
-├── static/                 # Static files (CSS, JS, images, etc.)
-│
-├── templates/              # HTML templates for rendering views
-│
-├── venv/                   # Python virtual environment
-│
-├── manage.py               # Django management script
-│
-├── requirements.txt        # Python dependencies and versions
-│
-└── README.md               # Project documentation and information
-```
+## DB Structure
+![db_newspaper_agency.jpg](..%2F..%2F..%2FprojectsMA%2Fdjango%2Fdb_newspaper_agency.jpg)
+
 
 ## Accessing the Application
 * The Django application is accessible at http://localhost:8000/
@@ -150,4 +118,4 @@ Remember to replace `localhost` with the relevant IP address if you're not acces
 ![img_4.png](images_for_readme/img_4.png)
 
 ## Contributing
-I welcome contributions to improve the Newspaper Redactor Tracking System. Feel free to submit bug reports, feature requests, or pull requests.
+I welcome contributions to improve the Newspaper Redactor Tracking System. Feel free to submit bug reports, feature requests, or pull requests to `yanaakhlamova@gmail.com`

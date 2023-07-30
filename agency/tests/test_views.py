@@ -8,8 +8,7 @@ class ViewTests(TestCase):
     def setUp(self):
         self.client = Client()
         self.admin_user = get_user_model().objects.create_superuser(
-            username="admin",
-            password="admin1234"
+            username="admin", password="admin1234"
         )
         self.client.force_login(self.admin_user)
 
@@ -30,7 +29,6 @@ class ViewTests(TestCase):
         self.assertEqual(self.client.session.get("num_visits"), 2)
 
     def test_topic_list_view(self):
-
         Topic.objects.create(name="Topic 1")
         Topic.objects.create(name="Topic 2")
 
@@ -66,7 +64,6 @@ class ViewTests(TestCase):
 
         redactor = Redactor.objects.get(username="new_redactor")
         self.assertEqual(redactor.years_of_experience, 5)
-
 
     def test_redactor_detail_view(self):
         redactor = Redactor.objects.create_user(
