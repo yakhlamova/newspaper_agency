@@ -8,14 +8,11 @@ class RedactorAdminTests(TestCase):
     def setUp(self):
         self.client = Client()
         self.admin_user = get_user_model().objects.create_superuser(
-            username="admin",
-            password="admin1234"
+            username="admin", password="admin1234"
         )
         self.client.force_login(self.admin_user)
         self.redactor = get_user_model().objects.create_user(
-            username="redactor",
-            password="redactor1234",
-            years_of_experience=5
+            username="redactor", password="redactor1234", years_of_experience=5
         )
 
     def test_redactor_years_of_experience_listed(self):

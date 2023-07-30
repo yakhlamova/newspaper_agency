@@ -25,4 +25,3 @@ class RedactorAdmin(UserAdmin):
     add_fieldsets = UserAdmin.add_fieldsets + (
         ("Additional info", {"fields": ("years_of_experience",)}),
     )
-
