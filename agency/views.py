@@ -6,7 +6,8 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 
 from .forms import (
     NewspaperForm,
-    RedactorForm,
+    RedactorCreationForm,
+    RedactorUpdateForm,
     TopicSearchForm,
     NewspaperSearchForm,
     RedactorSearchForm,
@@ -134,13 +135,13 @@ class RedactorDetailView(LoginRequiredMixin, generic.DetailView):
 
 class RedactorCreateView(LoginRequiredMixin, generic.CreateView):
     model = Redactor
-    form_class = RedactorForm
+    form_class = RedactorCreationForm
     success_url = reverse_lazy("agency:redactor-list")
 
 
 class RedactorUpdateView(LoginRequiredMixin, generic.UpdateView):
     model = Redactor
-    form_class = RedactorForm
+    form_class = RedactorUpdateForm
     success_url = reverse_lazy("agency:redactor-list")
 
 

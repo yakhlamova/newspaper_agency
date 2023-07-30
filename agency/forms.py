@@ -6,7 +6,7 @@ from django.utils import timezone
 from agency.models import Redactor, Newspaper
 
 
-class RedactorForm(UserCreationForm):
+class RedactorCreationForm(UserCreationForm):
     class Meta(UserCreationForm.Meta):
         model = Redactor
         fields = UserCreationForm.Meta.fields + (
@@ -16,19 +16,32 @@ class RedactorForm(UserCreationForm):
         )
 
     def clean_years_of_experience(self):
-        years_of_experience = self.cleaned_data.get("years_of_experience")
+        return validate_years_of_experience(self.cleaned_data["years_of_experience"])
 
-        if years_of_experience:
-            if years_of_experience < 0:
-                raise forms.ValidationError(
-                    "Years of experience cannot be less than 0."
-                )
-            elif years_of_experience > 60:
-                raise forms.ValidationError(
-                    "Years of experience cannot be more than 60."
-                )
 
-        return years_of_experience
+class RedactorUpdateForm(forms.ModelForm):
+    class Meta:
+        model = Redactor
+        fields = ["years_of_experience", "first_name", "last_name"]
+
+    def clean_years_of_experience(self):
+        return validate_years_of_experience(self.cleaned_data["years_of_experience"])
+
+
+def validate_years_of_experience(self):
+    years_of_experience = self.cleaned_data.get("years_of_experience")
+
+    if years_of_experience:
+        if years_of_experience < 0:
+            raise forms.ValidationError(
+                "Years of experience cannot be less than 0."
+            )
+        elif years_of_experience > 60:
+            raise forms.ValidationError(
+                "Years of experience cannot be more than 60."
+            )
+
+    return years_of_experience
 
 
 class RedactorSearchForm(forms.Form):
