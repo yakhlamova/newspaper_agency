@@ -28,9 +28,7 @@ class RedactorUpdateForm(forms.ModelForm):
         return validate_years_of_experience(self.cleaned_data["years_of_experience"])
 
 
-def validate_years_of_experience(self):
-    years_of_experience = self.cleaned_data.get("years_of_experience")
-
+def validate_years_of_experience(years_of_experience):
     if years_of_experience:
         if years_of_experience < 0:
             raise forms.ValidationError(
