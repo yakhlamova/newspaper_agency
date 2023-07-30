@@ -93,7 +93,8 @@ ctrl + C
 * The system will maintain records of redactors and their published newspapers, providing easy access to their profiles and history.
 
 ## DB Structure
-![db_newspaper_agency.jpg](..%2F..%2F..%2FprojectsMA%2Fdjango%2Fdb_newspaper_agency.jpg)
+![db_newspaper_agency](https://github.com/yakhlamova/newspaper_agency/assets/132567947/053f53d8-b76e-4faf-89b5-6caf6e7fd8ee)
+
 
 
 ## Accessing the Application
